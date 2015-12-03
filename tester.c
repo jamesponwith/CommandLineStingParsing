@@ -1,5 +1,5 @@
-/*
- * Tester program for COMP 280 Lab 8B (parse_args library)
+/**
+ * Tester program for COMP 280 Project9 (argument parsing library)
  *
  * Add your top-level comment here.
  */
@@ -11,7 +11,7 @@
 #include <sys/types.h> 
 #include "parse_args.h"
 
-// static: means these functions cannot be called from outside this file
+// static methods are local to this module
 static void printCommandArgs(char *cmdline, char **argv );
 static void printBG(int bg) ;
 
@@ -59,8 +59,10 @@ int main() {
 	return 0;
 }
 
-// This function prints out a message based on the value of bg
-// indicating if the command is run in the background or not
+/**
+ * This function prints out a message based on the value of bg
+ * indicating if the command is run in the background or not
+ */
 void printBG(int bg) {
 	if(bg) { 
 		printf("run in the background is true\n");
@@ -69,10 +71,11 @@ void printBG(int bg) {
 	}
 }
 
-// This function prints out the cmdline and argv list
-//   cmdline: the command line string
-//   argv: the argv list of command line argumetns string
-//
+/**
+ * This function prints out the cmdline and argv list
+ * @param cmdline The command line string
+ * @param argv The argv list of command line argumetns string
+ */
 void printCommandArgs(char *cmdline, char **argv ) {
 	printf("\nCommand line: %s\n", cmdline);
 

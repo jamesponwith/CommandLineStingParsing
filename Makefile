@@ -1,13 +1,10 @@
 CC = gcc
 CFLAGS = -g -Wall -Werror
-TARGETS = tester script_runner
+TARGETS = tester
 
 all: $(TARGETS) 
 
 tester: tester.c  parse_args.o
-	$(CC) $(CFLAGS) -o $@ $^
-
-script_runner: script_runner.c  parse_args.o
 	$(CC) $(CFLAGS) -o $@ $^
 
 # this is the command to build the parse_args library as a .o file
