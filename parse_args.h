@@ -1,4 +1,4 @@
-/*
+/**
  * COMP 280 @ USD
  *
  * Header/Interface file for parse_args library.
@@ -37,7 +37,8 @@ int parseArguments(const char *cmdline, char *argv[]);
 
 
 /*
- * parse_cmd_dynamic - parse the passed command line into an argv array
+ * Parse the passed command line into an argv array, which is allocated by the
+ * function itself.
  *
  * @param cmdline The command line string entered at the shell prompt
  * @param bg Will set value pointed to 1 if command line is run in 
@@ -49,8 +50,7 @@ int parseArguments(const char *cmdline, char *argv[]);
  *             end of the list of argument values.
  *             or NULL on an error
  *
- *             The caller is responsible for freeing the returned
- *             argv list.
+ * @note The caller is responsible for freeing the returned argv list.
  */
 char **parseArgumentsDynamic(const char *cmdline, int *bg);
 

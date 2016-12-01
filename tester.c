@@ -1,5 +1,5 @@
 /**
- * Tester program for COMP 280 Project9 (argument parsing library)
+ * Tester program for COMP 280 Project08 (argument parsing library)
  *
  * Add your top-level comment here.
  */
@@ -17,7 +17,7 @@ static void printBG(int bg) ;
 
 int main() { 
 
-	int bg, i;
+	int bg;
 	char cmdline[MAXLINE];
 	char *argv[MAXARGS], **args;
 
@@ -25,7 +25,7 @@ int main() {
 	printf("Enter quit to stop\n");
 	while(1) {
 		// (1) print the shell prompt
-		printf("enter a cmd line: ");  
+		printf("Enter a cmd line: ");  
 		fflush(stdout);
 
 		// (2) read in the next command
@@ -47,8 +47,9 @@ int main() {
 		bg = 0;
 		args = NULL;
 
-		// TODO: uncomment this call to test parse_cmd_dynamic
-		// args = parse_cmd_dynamic(cmdline, &bg);
+		// TODO: Uncomment this call to test parseArgsDynamic after you have it
+		// implemented.
+		// args = parseArgumentsDynamic(cmdline, &bg);
 		if(args) {
 			printCommandArgs(cmdline, args);
 			printBG(bg);

@@ -15,9 +15,9 @@
 // a static global variable means private to code in this file
 static char cmdline_copy[MAXLINE];
 
-// TODO: add your implmenetations of the parseArguments and
-// parseArgumentsDynamic functions here
-
 int parseArguments(const char *cmdline, char **argv) {
-
+	// TODO: implement this function
+	return 0;
 }
+
+// TODO: implement the parseArgumentsDynamicFunction here
