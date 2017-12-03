@@ -17,35 +17,33 @@ static void printBG(int bg) ;
 
 int main() { 
 
-	int bg;
-	char cmdline[MAXLINE];
-	char *argv[MAXARGS], **args;
-
-
-	printf("Enter quit to stop\n");
 	while(1) {
 		// (1) print the shell prompt
-		printf("Enter a cmd line: ");  
+		printf("Enter a line to parse, or enter \"quit\" to stop: ");
 		fflush(stdout);
 
 		// (2) read in the next command
+		char cmdline[MAXLINE];
 		if ((fgets(cmdline, MAXLINE, stdin) == NULL) && ferror(stdin))
 			perror("fgets error");
+
 		if (feof(stdin)) { /* End of file (ctrl-d) */
 			fflush(stdout);
 			exit(0);
 		}
 
-		bg = parseArguments(cmdline, argv);
+		char *argv[MAXARGS];
+		int bg = parseArguments(cmdline, argv);
 
-		if((argv[0]) && (strcmp(argv[0], "quit") == 0) ){
+		if((argv[0] != NULL) && (strcmp(argv[0], "quit") == 0) ){
 			break;
 		}
 		printCommandArgs(cmdline, argv);
 		printBG(bg);
 
-		bg = 0;
-		args = NULL;
+
+		char **args = NULL;
+		bg = 0; // clear bg flag
 
 		// TODO: Uncomment this call to test parseArgsDynamic after you have it
 		// implemented.
