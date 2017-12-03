@@ -11,9 +11,15 @@
 #include <ctype.h>
 #include "parse_args.h"
 
-// for parseArguments: a copy of the command line to make argv parm point to
-// a static global variable means private to code in this file
+/*
+ * A copy of the command line to which you can make your argv array point.
+ * 
+ * Note: Use this ONLY in the parseArguments function; DO NOT use in the
+ * parseArgumentsDynamic function.
+ */
 static char cmdline_copy[MAXLINE];
+
+// Note: you should NOT declare any other global variables.
 
 int parseArguments(const char *cmdline, char **argv) {
 	// TODO: implement this function
