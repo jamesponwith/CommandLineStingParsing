@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -Werror
+CFLAGS = -g -Wall -Wextra
 TARGETS = tester
 
 all: $(TARGETS) 
