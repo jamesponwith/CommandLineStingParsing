@@ -27,3 +27,16 @@ int parseArguments(const char *cmdline, char **argv) {
 }
 
 // TODO: implement the parseArgumentsDynamicFunction here
+
+
+char **parseArguementsDynamic(const char *cmdlinem int *bg) {
+	printf("Parsing**\n");
+	unsigned int i = 0;
+	char cmdline_copy[strlen(cmdline)];
+	for(i = 0; i < strlen(cmdline); ++i) {
+		cmdline_copy[i] = cmdline[i];
+		if(cmdline[i] == "&") {
+			
+		}
+	}
+}
