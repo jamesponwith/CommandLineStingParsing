@@ -47,7 +47,7 @@ int main() {
 
 		// TODO: Uncomment this call to test parseArgsDynamic after you have it
 		// implemented.
-		// args = parseArgumentsDynamic(cmdline, &bg);
+		 args = parseArgumentsDynamic(cmdline, &bg);
 		if(args) {
 			printCommandArgs(cmdline, args);
 			printBG(bg);
