@@ -38,7 +38,7 @@ int parseArguments(const char *cmdline, char **argv) {
 			ret = 1;
 			return ret;
 		}
-			strcat(token, "\0");
+			//strcat(token, "\0");
 			argv[i] = token; 
 			i++;
 	}
