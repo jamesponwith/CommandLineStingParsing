@@ -22,6 +22,11 @@ static char cmdline_copy[MAXLINE];
 // Note: you should NOT declare any other global variables.
 
 int parseArguments(const char *cmdline, char **argv) {
+	unsigned int j;
+	for(j = 0; j < sizeof(argv) - 1; j++) {
+		argv[j] = NULL;
+	}
+	
 	// Create copy of user command line arguments
 	strcpy(cmdline_copy, cmdline);	 
 	
