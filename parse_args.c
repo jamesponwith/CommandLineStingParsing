@@ -27,15 +27,23 @@ int parseArguments(const char *cmdline, char **argv) {
 	
 	int ret = 0;
 	char *token;
-	char *remainder = cmdline_copy; 
-	
+	char *remainder = cmdline_copy;
+	char delim[] = " \n";
 	unsigned int i = 0;
-	while((token = strtok_r(remainder, " ", &remainder))) {
-		if(strcmp(token, "&\n") == 0) {
+	while((token = strtok_r(remainder, delim, &remainder))) {
+		if(strcmp(token, "&") == 0) {
 			ret = 1;
 			return ret;
 		}
 
+		
+
+/*
+		int index = sizeof(token) - 1;
+		if(strcmp(token[index], "\n") == 0) {
+			token[sizeof(token) - 1] = 0;
+		}
+	*/	
 			strcat(token, "\0");
 			printf(" %d: %s\n", i, token);
 			argv[i] = token; 
