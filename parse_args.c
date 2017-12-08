@@ -18,15 +18,13 @@
  * parseArgumentsDynamic function.
  */
 static char cmdline_copy[MAXLINE];
-
-// Note: you should NOT declare any other global variables.
+// Globals are evil
 
 int parseArguments(const char *cmdline, char **argv) {
 	unsigned int j;
 	for(j = 0; j < sizeof(argv) - 1; j++) {
 		argv[j] = NULL;
 	}
-	
 	// Create copy of user command line arguments
 	strcpy(cmdline_copy, cmdline);	 
 	
@@ -40,24 +38,10 @@ int parseArguments(const char *cmdline, char **argv) {
 			ret = 1;
 			return ret;
 		}
-
-		
-
-/*
-		int index = sizeof(token) - 1;
-		if(strcmp(token[index], "\n") == 0) {
-			token[sizeof(token) - 1] = 0;
-		}
-	*/	
 			strcat(token, "\0");
-			printf(" %d: %s\n", i, token);
 			argv[i] = token; 
 			i++;
 	}
-
-//	printf("%s\n", *argv); 	
-	// if "&" then set bg to 1 
-	
 	return ret;
 }
 
