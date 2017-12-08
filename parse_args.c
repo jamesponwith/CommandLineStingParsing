@@ -22,21 +22,30 @@ static char cmdline_copy[MAXLINE];
 // Note: you should NOT declare any other global variables.
 
 int parseArguments(const char *cmdline, char **argv) {
-	// Make a copy of cmdline string in cmdline_copy
+	// Create copy of user command line arguments
 	strcpy(cmdline_copy, cmdline);	 
-	// loop through copy and assign tokens to argv
-	int i;
-
-	// once hit "-" 
 	
+	int ret = 0;
+	char *token;
+	char *remainder = cmdline_copy; 
+	
+	unsigned int i = 0;
+	while((token = strtok_r(remainder, " ", &remainder))) {
+		if(strcmp(token, "&\n") == 0) {
+			ret = 1;
+			return ret;
+		}
+
+			strcat(token, "\0");
+			printf(" %d: %s\n", i, token);
+			argv[i] = token; 
+			i++;
+	}
+
+//	printf("%s\n", *argv); 	
 	// if "&" then set bg to 1 
 	
-	//
-	
-	//
-	
-	//
-	return 0;
+	return ret;
 }
 
 // TODO: implement the parseArgumentsDynamicFunction here

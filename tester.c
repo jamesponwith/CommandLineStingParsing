@@ -35,7 +35,7 @@ int main() {
 		char *argv[MAXARGS];
 		int bg = parseArguments(cmdline, argv);
 
-		if((argv[0] != NULL) && (strcmp(argv[0], "quit") == 0) ){
+		if((argv[0] != NULL) && (strcmp(argv[0], "quit\n") == 0) ){
 			break;
 		}
 		printCommandArgs(cmdline, argv);
@@ -47,10 +47,11 @@ int main() {
 
 		// TODO: Uncomment this call to test parseArgsDynamic after you have it
 		// implemented.
-		 args = parseArgumentsDynamic(cmdline, &bg);
+		// args = parseArgumentsDynamic(cmdline, &bg);
 		if(args) {
 			printCommandArgs(cmdline, args);
 			printBG(bg);
+			memset(args, 0, sizeof *args);
 			// TODO: add code to free all malloc'ed state associated  
 			//       with the call to parse_cmd_dynamic
 		}
