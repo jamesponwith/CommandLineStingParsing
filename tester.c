@@ -54,8 +54,11 @@ int main() {
 			printBG(bg);
 			// TODO: add code to free all malloc'ed state associated  
 			//       with the call to parse_cmd_dynamic
-			for(; i < strlen(*argv); i++)
+			while(args[i] != NULL) {	
 				free(args[i]);
+				i++;
+			}
+			free(args);
 		}
 	}
 	return 0;
