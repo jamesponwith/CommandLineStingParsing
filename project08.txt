@@ -1,11 +1,11 @@
 COMP 280 - Project 08 (String Parsing Library)
 
-1. Author:
+1. Author: James Ponwith
 
-2. Total Hours Spent on Project:
+2. Total Hours Spent on Project: 10
 
-3. Did you complete the advanced component?:
+3. Did you complete the advanced component: Not yet.
 
-4. Project Bucks Used:
+4. Project Bucks Used: 0
 
 5. (Optional) Additional Comments:
