@@ -49,84 +49,45 @@ int parseArguments(const char *cmdline, char **argv) {
 	return ret;
 }
 
-
-
 char **parseArgumentsDynamic(const char *cmdline, int *bg) {
-	char cmdline_cp[strlen(cmdline)];
-	strcpy(cmdline_cp, cmdline);	 
-
-	//*bg = 0;	
-	char *token;
-	char *remainder = cmdline_cp;
-	char delim[] = " \n";
+	char *cmdline_cp = strdup(cmdline);
+	char *cmdline_args = strdup(cmdline);
+	*bg = 0;
 	unsigned int i = 0;
-	int size = 0;	
-	char **argv = malloc(sizeof(char *));
-	while((token = strtok_r(remainder, delim, &remainder))) {
+	
+	char *token = strtok(cmdline_cp, " \n");
+	while(token != NULL) {
 		if(strcmp(token, "&") == 0) {
 			*bg = 1;
-			return argv;
-		}	
-		size = strlen(token);
-			*argv = realloc(*argv, (size + 1));
-		//	strcat(token, "\0");
-
-		argv[i] = token;
-		printf("%s%d\n", "Strlen =", size );
-		//argv[i] = realloc(*argv, size); 	
+			i--;
+		}
+		//cmdline_cp[i] = *token;
 		i++;
-		printf("argv = %s,  Address = %p\n", argv[i-1], &argv);
+		token = strtok(NULL, " \n");	
 	}
-	//argv[i + 1] = NULL;
-	//*argv = realloc(argv, size);
-	//size += 1;
-	//*argv = realloc(*argv, size + 1);
-	//argv[sizeof(*argv) - 1] = NULL;	
-	return argv;
-}	
-	
 
-
-
-// TODO: implement the parseArgumentsDynamicFunction here
-/*
-char **parseArguementsDynamic(const char *cmdline, int *bg) {
-	printf("Parsing Dynamically\n");
-	unsigned int i = 0;
-	char cmdline_cpy[strlen(cmdline)];
-	for(i = 0; i < strlen(cmdline); ++i) {
-		cmdline_cpy[i] = cmdline[i];
-		if(cmdline[i] == '&') {
-			cmdline_cpy[i] = '&';
+	i += 1;
+	char **argv = calloc(i, sizeof(char **));
+	unsigned int z = 0;
+	char *token2 = strtok(cmdline_args, " \n");
+	while(token2 != NULL) {
+		if(strcmp(token2, "&") == 0) {
 			*bg = 1;
-			break;	
-		}
-		if(cmdline[i] == '\n') {
-			cmdline_cpy[i] = '\0';
+			z++;
 			break;
-		}
+		}	
+		int size = strlen(token2);
+		argv[z] = calloc(size, sizeof(char));
+		strcpy(argv[z], token2);
+		z++;
+		token2 = strtok(NULL, " \n");
 	}
-	printf("cmdline copy %s\n", cmdline_cpy);
-	char *cmdline_args = strtok(cmdline_cpy, " ");
-	i = 0;
-	char **argv = malloc(sizeof(char *));
-	if(cmdline_args != NULL) {
-		while(cmdline_args) {
-			argv[i] = malloc(sizeof(cmdline_args));
-			printf("%s\n", cmdline_args);
-			strcpy(argv[i], cmdline_args);
-			printf("%s\n", cmdline_args);
-			cmdline_args = strtok(NULL, " ");
-			printf("%d\n", (int) sizeof(argv));
-			i++;
-			if(cmdline_args == NULL) {
-				break;
-			}
-			return argv;
-		}
-	}
-	else {
-		return NULL;
-	}
+
+	free(cmdline_cp);
+	free(cmdline_args);
+	
+	argv[z] = NULL;
+	return argv;
 }
-*/
+	
+// TODO: implement the parseArgumentsDynamicFunction here
