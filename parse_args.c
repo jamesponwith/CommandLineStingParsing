@@ -1,7 +1,11 @@
 /*
  * Implementation file for parse_args library.
  *
- * Add your top-level comments here.
+ * This class include two functions that take in command line 
+ * arguments and parse them. The first simply tokenizes the 
+ * arguments and tracks whether the command should be ran 
+ * in the background or not. The second dynamically allocates
+ * memory to each individual element of the char array.  
  *
  */
 
@@ -45,11 +49,49 @@ int parseArguments(const char *cmdline, char **argv) {
 	return ret;
 }
 
-// TODO: implement the parseArgumentsDynamicFunction here
 
+
+char **parseArgumentsDynamic(const char *cmdline, int *bg) {
+	char cmdline_cp[strlen(cmdline)];
+	strcpy(cmdline_cp, cmdline);	 
+
+	//*bg = 0;	
+	char *token;
+	char *remainder = cmdline_cp;
+	char delim[] = " \n";
+	unsigned int i = 0;
+	int size = 0;	
+	char **argv = malloc(sizeof(char *));
+	while((token = strtok_r(remainder, delim, &remainder))) {
+		if(strcmp(token, "&") == 0) {
+			*bg = 1;
+			return argv;
+		}	
+		size = strlen(token);
+			*argv = realloc(*argv, (size + 1));
+		//	strcat(token, "\0");
+
+		argv[i] = token;
+		printf("%s%d\n", "Strlen =", size );
+		//argv[i] = realloc(*argv, size); 	
+		i++;
+		printf("argv = %s,  Address = %p\n", argv[i-1], &argv);
+	}
+	//argv[i + 1] = NULL;
+	//*argv = realloc(argv, size);
+	//size += 1;
+	//*argv = realloc(*argv, size + 1);
+	//argv[sizeof(*argv) - 1] = NULL;	
+	return argv;
+}	
+	
+
+
+
+// TODO: implement the parseArgumentsDynamicFunction here
 /*
 char **parseArguementsDynamic(const char *cmdline, int *bg) {
-	printf("Parsing**\n");
+	printf("Parsing Dynamically\n");
 	unsigned int i = 0;
 	char cmdline_cpy[strlen(cmdline)];
 	for(i = 0; i < strlen(cmdline); ++i) {
@@ -87,5 +129,4 @@ char **parseArguementsDynamic(const char *cmdline, int *bg) {
 		return NULL;
 	}
 }
-
 */

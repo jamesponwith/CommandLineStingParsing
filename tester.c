@@ -47,12 +47,15 @@ int main() {
 
 		// TODO: Uncomment this call to test parseArgsDynamic after you have it
 		// implemented.
-		// args = parseArgumentsDynamic(cmdline, &bg);
+		unsigned int i = 0;
+		args = parseArgumentsDynamic(cmdline, &bg);
 		if(args) {
 			printCommandArgs(cmdline, args);
 			printBG(bg);
 			// TODO: add code to free all malloc'ed state associated  
 			//       with the call to parse_cmd_dynamic
+			free(args);
+			i++;
 		}
 	}
 	return 0;
