@@ -54,39 +54,48 @@ char **parseArgumentsDynamic(const char *cmdline, int *bg) {
 	char *cmdline_args = strdup(cmdline);
 	*bg = 0;
 	unsigned int i = 0;
-	
-	char *token = strtok(cmdline_cp, " \n");
-	while(token != NULL) {
+	char *token;
+	char delim[] = " \n";
+	char *remainder = cmdline_cp;	
+//	char *token = strtok(cmdline_cp, " \n");
+	while((token = strtok_r(remainder, delim, &remainder))) {
+//	while(token != NULL) {
 		if(strcmp(token, "&") == 0) {
 			*bg = 1;
-			i--;
+			break;
 		}
 		//cmdline_cp[i] = *token;
 		i++;
-		token = strtok(NULL, " \n");	
+		//token = strtok(NULL, " \n");	
 	}
-
 	i += 1;
+	
 	char **argv = calloc(i, sizeof(char **));
 	unsigned int z = 0;
-	char *token2 = strtok(cmdline_args, " \n");
-	while(token2 != NULL) {
+	char *token2;
+	char *remainder2 = cmdline_args;
+	//char *token2 = strtok(cmdline_args, " \n");
+	while((token2 = strtok_r(remainder2, delim, &remainder2))) {
+	//while(token2 != NULL) {
 		if(strcmp(token2, "&") == 0) {
 			*bg = 1;
 			z++;
 			break;
 		}	
 		int size = strlen(token2);
-		argv[z] = calloc(size, sizeof(char));
-		strcpy(argv[z], token2);
+	//	argv[z] = calloc(size, sizeof(char));
+		argv[z] = strndup(token2, size);
+		//strcpy(argv[z], token2);
 		z++;
-		token2 = strtok(NULL, " \n");
+		//token2 = strtok(NULL, " \n");
 	}
 
 	free(cmdline_cp);
 	free(cmdline_args);
 	
-	argv[z] = NULL;
+//	z++;
+	//argv[z] = "\0";
+//	argv[z] = strdup("\0");
 	return argv;
 }
 	
