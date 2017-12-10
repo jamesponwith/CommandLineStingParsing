@@ -1,7 +1,14 @@
 /**
  * Tester program for COMP 280 Project08 (argument parsing library)
  *
- * Add your top-level comment here.
+ * Author: James Ponwith
+ *
+ * This program immplements the argument parsing
+ * library by taking in commandline input and 
+ * returns a char array of parsed commands. 
+ * Additionally, it provides a flag to track 
+ * whether the program should be ran in the 
+ * background or foreground.
  */
 
 #include <stdlib.h>
@@ -45,15 +52,11 @@ int main() {
 		char **args = NULL;
 		bg = 0; // clear bg flag
 
-		// TODO: Uncomment this call to test parseArgsDynamic after you have it
-		// implemented.
 		unsigned int i = 0;
 		args = parseArgumentsDynamic(cmdline, &bg);
 		if(args) {
 			printCommandArgs(cmdline, args);
 			printBG(bg);
-			// TODO: add code to free all malloc'ed state associated  
-			//       with the call to parse_cmd_dynamic
 			while(args[i] != NULL) {	
 				free(args[i]);
 				i++;
