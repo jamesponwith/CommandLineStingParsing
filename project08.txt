@@ -6,6 +6,6 @@ COMP 280 - Project 08 (String Parsing Library)
 
 3. Did you complete the advanced component: Not yet.
 
-4. Project Bucks Used: 0
+4. Project Bucks Used: 1 
 
 5. (Optional) Additional Comments:
